@@ -604,31 +604,3 @@ body {
     from { opacity: 0; }
     to { opacity: 1; }
   }
-  /* กล่องข้อความอ้อนขอดูกกยิ้มล่างสุด */
-.request-box {
-    margin-top: 20px;
-    padding: 12px 15px;
-    background: #fff0f5;
-    border: 1.5px dashed #ff85a2;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(255, 133, 162, 0.15);
-    animation: pulseBox 2s infinite ease-in-out;
-}
-
-.request-box p {
-    font-size: 13.5px;
-    color: #5c3d46;
-    line-height: 1.5;
-    font-weight: 500;
-}
-
-@keyframes pulseBox {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.02);
-    }
-}
-
