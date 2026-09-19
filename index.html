@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Birthday! 🎂💗</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mitr:wght@300;400;500;600&family=Itim&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- องค์ประกอบตกแต่งพื้นหลัง (แมว ดอกไม้ ดวงดาว) -->
+    <div class="bg-decorations">
+        <span class="decor floating-1">🐱</span>
+        <span class="decor floating-2">🌸</span>
+        <span class="decor floating-3">✨</span>
+        <span class="decor floating-4">🌼</span>
+        <span class="decor floating-5">🐾</span>
+        <span class="decor floating-6">⭐</span>
+    </div>
+
+    <!-- 💌 ขั้นตอนที่ 1: ซองจดหมาย -->
+    <section id="step-envelope" class="step active">
+        <div class="envelope-wrapper" id="envelope-btn">
+            <div class="envelope">
+                <div class="front flap"></div>
+                <div class="front pocket"></div>
+                <div class="letter">
+                    <div class="letter-text">💌 สำหรับคนพิเศษ</div>
+                </div>
+                <div class="envelope-sticker">🐱</div>
+            </div>
+        </div>
+        <p class="instruction-text">มีจดหมายถึงเจ้าของวันเกิด 1 ฉบับ 💌<br><span class="sub-text">(กดที่ซองเพื่อเปิดดูเลย)</span></p>
+    </section>
+
+    <!-- 🔐 ขั้นตอนที่ 2: กรอกรหัสผ่าน -->
+    <section id="step-pin" class="step hidden">
+        <div class="card-box">
+            <h2>เช็คความน่ารักคนนี้ใช่เจ้าของวันเกิดตัวจริงมั้ยน้า ✨</h2>
+            <p class="subtitle">ใส่รหัสให้ถูกต้อง (2109) 🔐</p>
+
+            <div class="pin-display" id="pin-display">
+                <span class="pin-dot"></span>
+                <span class="pin-dot"></span>
+                <span class="pin-dot"></span>
+                <span class="pin-dot"></span>
+            </div>
+
+            <div class="keypad">
+                <button onclick="pressPin('1')">1</button>
+                <button onclick="pressPin('2')">2</button>
+                <button onclick="pressPin('3')">3</button>
+                <button onclick="pressPin('4')">4</button>
+                <button onclick="pressPin('5')">5</button>
+                <button onclick="pressPin('6')">6</button>
+                <button onclick="pressPin('7')">7</button>
+                <button onclick="pressPin('8')">8</button>
+                <button onclick="pressPin('9')">9</button>
+                <button onclick="clearPin()">C</button>
+                <button onclick="pressPin('0')">0</button>
+                <button onclick="deletePin()">⌫</button>
+            </div>
+            <p id="pin-status" class="pin-status"></p>
+        </div>
+    </section>
+
+    <!-- 💖 ขั้นตอนที่ 3: ถามความพร้อม (Yes/No) -->
+    <section id="step-ready" class="step hidden">
+        <div class="card-box glow">
+            <div class="badge">✓ เจ้าของวันเกิดตัวจริงมาแล้ว!</div>
+            <p class="cute-msg">ใส่ถูกแบบนี้ แสดงว่าเป็นคนน่ารักของไอแน่นอน 🥰</p>
+            <h3>ยูพร้อมรึยังคะ? 🎂✨</h3>
+            <div class="btn-group">
+                <button class="btn btn-primary" onclick="goToCandles()">พร้อมแล้ว! 💕</button>
+                <button class="btn btn-secondary" id="btn-no" onclick="moveNoButton()">ยังไม่พร้อม 🙈</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 🎂 ขั้นตอนที่ 4: ปักเทียนและเป่าเทียน -->
+    <section id="step-cake" class="step hidden">
+        <p class="instruction-text" id="cake-instruction">เริ่มเป่าเค้กกัน แต่ยังม่ายมีเทียนเลยน้า มาปักเทียนกันก่อนน 🎂✨</p>
+        
+        <div class="cake-container">
+            <div class="cake">
+                <div class="plate"></div>
+                <div class="layer layer-bottom"></div>
+                <div class="layer layer-middle"></div>
+                <div class="layer layer-top"></div>
+                <div class="icing"></div>
+                
+                <!-- ตำแหน่งเทียน 3 เล่ม -->
+                <div class="candles-area">
+                    <div class="candle-wrapper" id="candle-wrapper-1" onclick="lightCandle(1)">
+                        <div class="flame hidden" id="flame-1"></div>
+                        <div class="candle" id="candle-1"></div>
+                        <span class="candle-label">🕯️ 1</span>
+                    </div>
+                    <div class="candle-wrapper" id="candle-wrapper-2" onclick="lightCandle(2)">
+                        <div class="flame hidden" id="flame-2"></div>
+                        <div class="candle" id="candle-2"></div>
+                        <span class="candle-label">🕯️ 2</span>
+                    </div>
+                    <div class="candle-wrapper" id="candle-wrapper-3" onclick="lightCandle(3)">
+                        <div class="flame hidden" id="flame-3"></div>
+                        <div class="candle" id="candle-3"></div>
+                        <span class="candle-label">🕯️ 3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="candle-messages" id="candle-messages">
+            <p id="msg-1" class="c-msg hidden">✨ อันที่ 1: ขอให้มีความสุข</p>
+            <p id="msg-2" class="c-msg hidden">✨ อันที่ 2: ขอให้สมหวัง</p>
+            <p id="msg-3" class="c-msg hidden">✨ อันที่ 3: ขอให้มีคนรักเยอะ ๆ</p>
+        </div>
+
+        <div id="audio-announcement" class="audio-banner hidden">
+            <p>เอาล่ะ... เพลงนี้ตั้งใจเลือกให้เธอเลยนะ 🎧💗</p>
+        </div>
+
+        <button id="btn-blow" class="btn btn-blow hidden" onclick="blowCandles()">💨 เป่าเลย!</button>
+    </section>
+
+    <!-- 🌙 ขั้นตอนที่ 5: ฉากมืดอธิษฐาน -->
+    <section id="step-wish" class="step hidden dark-bg">
+        <div class="wish-container">
+            <h1 class="fade-in-text">หลับตา... แล้วอธิษฐานนะ 🌙✨</h1>
+        </div>
+    </section>
+
+    <!-- 🌌 ขั้นตอนที่ 6: ท้องฟ้าดาวเต็มจอ & กล่องของขวัญ -->
+    <section id="step-sky" class="step hidden night-sky">
+        <div class="stars-container" id="stars-container"></div>
+        
+        <div class="gift-wrapper" id="gift-box" onclick="openGift()">
+            <div class="gift-box">
+                <div class="gift-lid">🎁</div>
+                <div class="gift-body">🎀</div>
+            </div>
+            <p class="gift-hint">มีของขวัญจากไอวางอยู่ตรงนี้ แตะเพื่อเปิดเลย! 🎁✨</p>
+        </div>
+    </section>
+
+    <!-- 🎁/📜 ขั้นตอนที่ 7: การ์ดวันเกิด มินิอัลบั้ม และข้อความพิมพ์ทีละตัว -->
+    <section id="step-card" class="step hidden">
+        <div class="birthday-card">
+            <div class="card-header">
+                <h2>Happy Birthday! 💐💗</h2>
+            </div>
+
+            <!-- 📸 มินิอัลบั้มรูปภาพ -->
+            <div class="gallery-container">
+                <p class="gallery-title">ช่วงเวลาน่ารัก ๆ ของเรา 💗</p>
+                <div class="slider">
+                    <div class="slides" id="slides">
+                        <div class="slide"><img src="photo1.jpg" alt="ภาพความทรงจำ 1" onerror="this.src='https://picsum.photos/300/200?random=1'"></div>
+                        <div class="slide"><img src="photo2.jpg" alt="ภาพความทรงจำ 2" onerror="this.src='https://picsum.photos/300/200?random=2'"></div>
+                        <div class="slide"><img src="photo3.jpg" alt="ภาพความทรงจำ 3" onerror="this.src='https://picsum.photos/300/200?random=3'"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 💬 ข้อความพิมพ์ทีละตัว -->
+            <div class="typing-container">
+                <p id="typed-text" class="typed-text"></p>
+            </div>
+
+            <!-- 🥰 แบบประเมินความน่ารัก -->
+            <div class="rating-section hidden" id="rating-section">
+                <h3>ให้คะแนนความตั้งใจของไอหน่อยน้า 🥺💗</h3>
+                <div class="rating-buttons">
+                    <button onclick="giveRating('cute')">🥺 น่ารักมาก</button>
+                    <button onclick="giveRating('love')">💗 ชอบมาก</button>
+                    <button onclick="giveRating('impressed')">🎀 ประทับใจ</button>
+                    <button onclick="giveRating('best')">✨ ที่สุดเลย</button>
+                </div>
+                <div id="rating-result" class="rating-result"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- เสียงอวยพร (ไฟล์ audio) -->
+    <audio id="bg-music" src="birthday-voice.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+</body>
+          </html>
+                          
